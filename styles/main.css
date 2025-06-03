@@ -1,72 +1,98 @@
-/* === GLOBALE STYLES === */
+/* === GRUNDLAYOUT === */
 body {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
-  padding: 2rem;
+  padding: 1rem;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* === THEME SELECTOR === */
-.theme-selector {
+/* === 2-SPALTEN LAYOUT === */
+.main-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.input-panel {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  border-radius: 15px;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  height: fit-content;
+  position: sticky;
+  top: 1rem;
+}
+
+.preview-panel {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   padding: 1rem;
-  margin-bottom: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.theme-option {
-  border: 2px solid transparent;
-  border-radius: 10px;
-  padding: 0.75rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background: linear-gradient(45deg, var(--theme-primary), var(--theme-secondary));
-  color: white;
-  text-align: center;
-  font-weight: 600;
+/* === RESPONSIVE === */
+@media (max-width: 992px) {
+  .input-panel {
+    position: static;
+    margin-bottom: 2rem;
+  }
+  
+  .preview-panel {
+    padding: 0;
+  }
+  
+  .a5-wrapper {
+    transform: scale(0.8);
+  }
 }
 
-.theme-option:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+@media (max-width: 768px) {
+  body {
+    padding: 0.5rem;
+  }
+  
+  .a5-wrapper {
+    transform: scale(0.6);
+  }
 }
 
-.theme-option.active {
-  border-color: #fff;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
-}
-
-/* === THEME VARIABLEN === */
-/* Modern Theme */
-.theme-modern {
-  --theme-primary: #667eea;
-  --theme-secondary: #764ba2;
-  --theme-accent: #f093fb;
-  --theme-text: #2d3748;
-  --theme-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --theme-card-bg: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
-}
-
-/* Elegant Theme */
-.theme-elegant {
-  --theme-primary: #134e5e;
-  --theme-secondary: #71b280;
-  --theme-accent: #d4af37;
-  --theme-text: #2c3e50;
-  --theme-gradient: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
-  --theme-card-bg: linear-gradient(145deg, #fdfcfb 0%, #e2d1c3 100%);
-}
-
-/* Warm Theme */
-.theme-warm {
-  --theme-primary: #ff9a9e;
-  --theme-secondary: #fecfef;
-  --theme-accent: #ff6b6b;
-  --theme-text: #4a5568;
-  --theme-gradient: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-  --theme-card-bg: linear-gradient(145deg, #fff5f5 0%, #fed7d7 100%);
+/* === PRINT/PDF OPTIMIERUNG === */
+@media print {
+  .input-panel, #pdf-buttons { 
+    display: none !important; 
+  }
+  
+  body {
+    background: var(--theme-gradient) !important;
+    padding: 0;
+    margin: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  .preview-panel {
+    padding: 0;
+  }
+  
+  .a5-wrapper {
+    transform: none;
+    margin: 0;
+    page-break-inside: avoid;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  .a5-wrapper .text-gradient {
+    color: var(--theme-primary) !important;
+    background: none !important;
+    -webkit-text-fill-color: initial !important;
+  }
+  
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
 }
 
 /* === HAUPTCONTAINER === */
@@ -101,7 +127,7 @@ body {
 }
 
 /* === HAUPTINHALT === */
-.angled-bg {
+.a5-wrapper .angled-bg {
   background: var(--theme-card-bg);
   transform: skewY(-2deg);
   padding: 3rem 2rem;
@@ -113,24 +139,25 @@ body {
   z-index: 1;
 }
 
-.angled-content {
+.a5-wrapper .angled-content {
   transform: skewY(2deg);
   position: relative;
   z-index: 2;
 }
 
 /* === FOOTER === */
-.angled-footer {
+.a5-wrapper .angled-footer {
   background: linear-gradient(135deg, var(--theme-primary), var(--theme-secondary));
   transform: skewY(-2deg);
-  padding: 2.5rem 2rem;
+  padding: 1.5rem 2rem;
   color: white;
-  margin-top: -3rem;
+  margin-top: -2rem;
   border-radius: 20px;
   position: relative;
+  min-height: 60px;
 }
 
-.angled-footer::before {
+.a5-wrapper .angled-footer::before {
   content: '';
   position: absolute;
   top: 0;
@@ -141,8 +168,8 @@ body {
   pointer-events: none;
 }
 
-/* === BILDER === */
-.hero-icon {
+/* === BILDER IM PDF === */
+.a5-wrapper .hero-icon {
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -152,7 +179,7 @@ body {
   transition: transform 0.3s ease;
 }
 
-.speaker-img {
+.a5-wrapper .speaker-img {
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -162,23 +189,23 @@ body {
   transition: transform 0.3s ease;
 }
 
-/* === TYPOGRAFIE === */
-h1, h2 {
+/* === TYPOGRAFIE IM PDF === */
+.a5-wrapper h1, .a5-wrapper h2 {
   font-weight: 700;
   line-height: 1.2;
 }
 
-h1 {
+.a5-wrapper h1 {
   font-size: 1.8rem;
   margin-bottom: 0.5rem;
 }
 
-h2 {
+.a5-wrapper h2 {
   font-size: 1.3rem;
   margin-bottom: 1rem;
 }
 
-.text-gradient {
+.a5-wrapper .text-gradient {
   background: linear-gradient(135deg, var(--theme-primary), var(--theme-secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -186,7 +213,7 @@ h2 {
   font-weight: 700;
 }
 
-.event-details {
+.a5-wrapper .event-details {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
   border-radius: 15px;
@@ -195,7 +222,7 @@ h2 {
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.speaker-card {
+.a5-wrapper .speaker-card {
   background: rgba(255, 255, 255, 0.9);
   border-radius: 15px;
   padding: 1rem;
@@ -203,42 +230,8 @@ h2 {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.speaker-card:hover {
+.a5-wrapper .speaker-card:hover {
   transform: translateY(-5px);
-}
-
-/* === PRINT/PDF OPTIMIERUNG === */
-@media print {
-  #editor, #pdf-buttons { 
-    display: none !important; 
-  }
-  
-  body {
-    background: var(--theme-gradient) !important;
-    padding: 0;
-    margin: 0;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-  
-  .a5-wrapper {
-    box-shadow: none;
-    margin: 0;
-    page-break-inside: avoid;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-  
-  .text-gradient {
-    color: var(--theme-primary) !important;
-    background: none !important;
-    -webkit-text-fill-color: initial !important;
-  }
-  
-  * {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
 }
 
 /* === PDF OPTIMIERUNG === */
@@ -267,15 +260,4 @@ h2 {
 
 .double-pdf-container .a5-wrapper {
   transform: scale(0.95);
-}
-
-/* === RESPONSIVE === */
-@media (max-width: 768px) {
-  body {
-    padding: 1rem;
-  }
-  
-  .a5-wrapper {
-    transform: scale(0.8);
-  }
 }
