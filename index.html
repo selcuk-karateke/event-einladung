@@ -1,71 +1,14 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Event Einladung</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      background: linear-gradient(135deg, #dbeafe, #fef3c7);
-      min-height: 100vh;
-      padding: 2rem;
-    }
-    .a5-wrapper {
-      width: 148mm;
-      height: 210mm;
-      background: white;
-      box-shadow: 0 0 20px rgba(0,0,0,0.15);
-      padding: 0;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      border-radius: 2rem;
-      margin: auto;
-    }
-    .angled-bg {
-      background: white;
-      transform: skewY(-3deg);
-      padding: 4rem 2rem;
-      border-radius: 2rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-    .angled-footer {
-      background: #0d1b2a;
-      transform: skewY(-3deg);
-      padding: 3rem 2rem;
-      color: white;
-      margin-top: -4rem;
-      border-radius: 2rem;
-    }
-    .angled-content {
-      transform: skewY(3deg);
-    }
-    .hero-icon {
-      width: 100px;
-    }
-    .speaker-img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid #f59e0b;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    }
-    h1, h2 {
-      font-weight: 700;
-    }
-    .text-gradient {
-      background: linear-gradient(to right, #1e3a8a, #f59e0b);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    @media print {
-      #editor, #pdf-buttons { display: none; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles/main.css">
 </head>
+
 <body>
   <div class="container mb-4" id="editor">
     <div class="row g-3">
@@ -76,7 +19,8 @@
         <input id="input-subtitle" value="Amway Produkte und der Plan" class="form-control" placeholder="Untertitel">
       </div>
       <div class="col-md-6">
-        <input id="input-presenter1" value="Referentin: Frau Dr. Anna Skrobot" class="form-control" placeholder="Referentin">
+        <input id="input-presenter1" value="Referentin: Frau Dr. Anna Skrobot" class="form-control"
+          placeholder="Referentin">
       </div>
       <div class="col-md-6">
         <input id="input-presenter2" value="Referent: Herr Bülent Kazan" class="form-control" placeholder="Referent">
@@ -88,20 +32,26 @@
         <input id="input-time" value="13 Uhr bis 15 Uhr" class="form-control" placeholder="Zeit">
       </div>
       <div class="col-md-4">
-        <input id="input-location" value="Beyoglu Restaurant, Oranienburgerstr. 88, 13437 Berlin" class="form-control" placeholder="Ort">
+        <input id="input-location" value="Beyoglu Restaurant, Oranienburgerstr. 88, 13437 Berlin" class="form-control"
+          placeholder="Ort">
       </div>
       <div class="col-md-6">
         <input id="input-name1" value="Dr. Anna Skrobot" class="form-control" placeholder="Name 1">
-        <input id="input-img1" value="https://placehold.co/120x120?text=Bild+1" class="form-control mt-1" placeholder="Bild 1 URL">
-        <input type="file" accept="image/*" class="form-control mt-1" onchange="loadFile(event, 'img1')">
+        <input id="input-img1" value="https://placehold.co/120x120?text=Bild+1" class="form-control mt-1"
+          placeholder="Bild 1 URL">
+        <label for="file-img1" class="form-label mt-1">Bild 1 hochladen:</label>
+        <input id="file-img1" type="file" accept="image/*" class="form-control" onchange="loadFile(event, 'img1')">
       </div>
       <div class="col-md-6">
         <input id="input-name2" value="Bülent Kazan" class="form-control" placeholder="Name 2">
-        <input id="input-img2" value="https://placehold.co/120x120?text=Bild+2" class="form-control mt-1" placeholder="Bild 2 URL">
-        <input type="file" accept="image/*" class="form-control mt-1" onchange="loadFile(event, 'img2')">
+        <input id="input-img2" value="https://placehold.co/120x120?text=Bild+2" class="form-control mt-1"
+          placeholder="Bild 2 URL">
+        <label for="file-img2" class="form-label mt-1">Bild 2 hochladen:</label>
+        <input id="file-img2" type="file" accept="image/*" class="form-control" onchange="loadFile(event, 'img2')">
       </div>
       <div class="col-md-6">
-        <input type="file" accept="image/*" class="form-control" onchange="loadFile(event, 'icon-img')">
+        <label for="file-icon" class="form-label">Event Icon hochladen:</label>
+        <input id="file-icon" type="file" accept="image/*" class="form-control" onchange="loadFile(event, 'icon-img')">
       </div>
       <div id="pdf-buttons" class="text-end mt-3">
         <button onclick="applyInput()" class="btn btn-primary">Übernehmen</button>
@@ -123,12 +73,14 @@
         <div class="mb-5">
           <p class="fs-5"><strong>Sonntag, <span class="text-gradient" id="event-date">14. Mai 2023</span></strong></p>
           <p class="fs-5">Beginn: <span class="text-gradient" id="event-time">13 Uhr bis 15 Uhr</span></p>
-          <p class="fs-5">Ort: <span class="text-gradient" id="event-location">Beyoglu Restaurant, Oranienburgerstr. 88, 13437 Berlin</span></p>
+          <p class="fs-5">Ort: <span class="text-gradient" id="event-location">Beyoglu Restaurant, Oranienburgerstr. 88,
+              13437 Berlin</span></p>
         </div>
 
         <div class="row justify-content-center text-center g-3">
           <div class="col-6">
-            <img id="img1" src="https://placehold.co/120x120?text=Bild+1" alt="Frau Dr. Skrobot" class="speaker-img mb-2">
+            <img id="img1" src="https://placehold.co/120x120?text=Bild+1" alt="Frau Dr. Skrobot"
+              class="speaker-img mb-2">
             <h6 id="name1">Dr. Anna Skrobot</h6>
           </div>
           <div class="col-6">
@@ -145,66 +97,13 @@
     </div>
   </div>
 
+  <!-- Externe JavaScript Bibliotheken -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script>
-    function applyInput() {
-      document.getElementById('title').textContent = document.getElementById('input-title').value;
-      document.getElementById('subtitle').textContent = document.getElementById('input-subtitle').value;
-      document.getElementById('presenter1').textContent = document.getElementById('input-presenter1').value;
-      document.getElementById('presenter2').textContent = document.getElementById('input-presenter2').value;
-      document.getElementById('event-date').textContent = document.getElementById('input-date').value;
-      document.getElementById('event-time').textContent = document.getElementById('input-time').value;
-      document.getElementById('event-location').textContent = document.getElementById('input-location').value;
-      document.getElementById('name1').textContent = document.getElementById('input-name1').value;
-      document.getElementById('name2').textContent = document.getElementById('input-name2').value;
-      document.getElementById('img1').src = document.getElementById('input-img1').value;
-      document.getElementById('img2').src = document.getElementById('input-img2').value;
-    }
-
-    function loadFile(event, id) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          document.getElementById(id).src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-
-    function resetForm() {
-      const defaults = {
-        'input-title': 'Gesundheit und Nahrungsergänzung',
-        'input-subtitle': 'Amway Produkte und der Plan',
-        'input-presenter1': 'Referentin: Frau Dr. Anna Skrobot',
-        'input-presenter2': 'Referent: Herr Bülent Kazan',
-        'input-date': '14. Mai 2023',
-        'input-time': '13 Uhr bis 15 Uhr',
-        'input-location': 'Beyoglu Restaurant, Oranienburgerstr. 88, 13437 Berlin',
-        'input-name1': 'Dr. Anna Skrobot',
-        'input-name2': 'Bülent Kazan',
-        'input-img1': 'https://placehold.co/120x120?text=Bild+1',
-        'input-img2': 'https://placehold.co/120x120?text=Bild+2'
-      };
-      for (let id in defaults) {
-        document.getElementById(id).value = defaults[id];
-      }
-      document.getElementById('icon-img').src = 'https://placehold.co/100x100?text=Icon';
-      applyInput();
-    }
-
-    async function downloadPDF() {
-      const { jsPDF } = window.jspdf;
-      const a5Wrapper = document.querySelector('.a5-wrapper');
-      const canvas = await html2canvas(a5Wrapper, { scale: 2 });
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('portrait', 'mm', 'a4');
-      const x = (210 - 148) / 2;
-      pdf.addImage(imgData, 'PNG', x, 0, 148, 210);
-      pdf.save('einladung.pdf');
-    }
-  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Eigenes JavaScript -->
+  <script src="scripts/main.js"></script>
 </body>
+
 </html>

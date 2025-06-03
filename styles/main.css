@@ -1,44 +1,101 @@
 body {
+  background: linear-gradient(135deg, #dbeafe, #fef3c7);
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.a5-wrapper {
+  width: 148mm;
+  height: 210mm;
+  background: white;
+  box-shadow: 0 0 20px rgba(0,0,0,0.15);
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 2rem;
+  margin: auto;
+}
+
+.angled-bg {
+  background: white;
+  transform: skewY(-3deg);
+  padding: 4rem 2rem;
+  border-radius: 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.angled-footer {
+  background: #0d1b2a;
+  transform: skewY(-3deg);
+  padding: 3rem 2rem;
+  color: white;
+  margin-top: -4rem;
+  border-radius: 2rem;
+}
+
+.angled-content {
+  transform: skewY(3deg);
+}
+
+.hero-icon {
+  width: 100px;
+}
+
+.speaker-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #f59e0b;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+h1, h2 {
+  font-weight: 700;
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #1e3a8a, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Print-spezifische Styles für besseres PDF-Rendering */
+@media print {
+  #editor, #pdf-buttons { 
+    display: none; 
+  }
+  
+  body {
+    background: white;
+    padding: 0;
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-}
-
-header {
-    background: #35424a;
-    color: #ffffff;
-    padding: 10px 0;
-    text-align: center;
-}
-
-h1 {
+  }
+  
+  .a5-wrapper {
+    box-shadow: none;
     margin: 0;
+    page-break-inside: avoid;
+  }
+  
+  /* Verbessertes Rendering für PDF */
+  .text-gradient {
+    color: #1e3a8a;
+    background: none;
+    -webkit-text-fill-color: initial;
+  }
+  
+  .speaker-img {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
 }
 
-nav {
-    margin: 20px 0;
-}
-
-nav a {
-    color: #ffffff;
-    text-decoration: none;
-    margin: 0 15px;
-}
-
-nav a:hover {
-    text-decoration: underline;
-}
-
-main {
-    padding: 20px;
-}
-
-footer {
-    text-align: center;
-    padding: 10px 0;
-    background: #35424a;
-    color: #ffffff;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+/* Zusätzliche Styles für besseres PDF-Rendering */
+.a5-wrapper * {
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
 }

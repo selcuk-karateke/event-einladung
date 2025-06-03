@@ -1,33 +1,93 @@
-# GitHub Pages App
+# Event Einladung Generator
 
-## Projektübersicht
-Dieses Projekt ist eine einfache Webanwendung, die auf GitHub Pages gehostet werden kann. Es besteht aus einer Haupt-HTML-Datei, CSS-Stilen und JavaScript-Funktionen, die zusammen eine interaktive Benutzeroberfläche bieten.
+Ein webbasiertes Tool zur Erstellung von Event-Einladungen im DIN A5 Format mit PDF-Export.
 
-## Dateien im Projekt
+## 🚀 Neueste Verbesserungen
 
-- **src/index.html**: Die Haupt-HTML-Datei, die die Struktur der Webseite definiert und die CSS- und JavaScript-Dateien einbindet.
-- **src/styles/main.css**: Enthält die CSS-Stile für die Anwendung, die das Aussehen und Layout der Webseite bestimmen.
-- **src/scripts/main.js**: Beinhaltet das JavaScript für die Anwendung, das die Interaktivität und das Verhalten der Webseite steuert.
-- **.gitignore**: Listet die Dateien und Verzeichnisse auf, die von Git ignoriert werden sollen.
+### ✅ PDF-Qualität verbessert
+- **Problem behoben**: PDF wird jetzt exakt wie HTML gerendert
+- **Höhere Auflösung**: Scale-Faktor auf 3 erhöht für schärfere Bilder
+- **Text-Gradient Optimierung**: Spezielle Behandlung für PDF-Export
+- **Bessere Positionierung**: A5 wird perfekt zentriert in A4 platziert
+- **Color-Rendering**: `print-color-adjust: exact` für bessere Farbwiedergabe
 
-## Einrichtung
+### 📁 Code-Organisation verbessert
+- **CSS ausgelagert**: Alle Styles in `styles/main.css`
+- **JavaScript ausgelagert**: Alle Funktionen in `scripts/main.js`
+- **Saubere HTML**: Keine Inline-Styles oder -Scripts mehr
+- **Modulare Struktur**: Bessere Wartbarkeit und Erweiterbarkeit
 
-1. Klonen Sie das Repository auf Ihren lokalen Computer:
-   ```
-   git clone <repository-url>
-   ```
+### 🖼️ Bild-Upload Problem behoben
+- **Verbesserte loadFile-Funktion**: Bessere Fehlerbehandlung
+- **Datei-Validierung**: Prüfung auf gültige Bildformate
+- **URL-Input Integration**: Synchronisation zwischen File-Upload und URL-Eingabe
+- **Error-Handling**: Benutzerfreundliche Fehlermeldungen
+- **File-Input Reset**: Ordnungsgemäße Zurücksetzung der Upload-Felder
 
-2. Navigieren Sie in das Projektverzeichnis:
-   ```
-   cd github-pages-app
-   ```
+### 🎯 Zusätzliche Verbesserungen
+- **Auto-Update**: Eingaben werden automatisch übernommen
+- **Labels für Accessibility**: Bessere Barrierefreiheit
+- **Event Listeners**: Moderne JavaScript-Implementierung
+- **Print-CSS**: Optimierte Styles für Druck und PDF
 
-3. Öffnen Sie die `src/index.html` Datei in einem Webbrowser, um die Anwendung zu sehen.
+## 🛠️ Technische Details
 
-## Nutzung
+### Projektstruktur
+```
+event-einladung/
+├── index.html          # Haupt-HTML-Datei
+├── styles/
+│   └── main.css        # Alle CSS-Styles
+├── scripts/
+│   └── main.js         # Alle JavaScript-Funktionen
+└── README.md           # Diese Dokumentation
+```
 
-Die Anwendung kann direkt über GitHub Pages bereitgestellt werden. Stellen Sie sicher, dass die `index.html` Datei als Startseite konfiguriert ist, um die Anwendung korrekt anzuzeigen.
+### PDF-Export Verbesserungen
+- **html2canvas Optionen**: Optimiert für beste Qualität
+- **CORS-Support**: Für externe Bilder
+- **Gradient-Handling**: Spezielle Behandlung für Text-Gradienten
+- **Skalierung**: 3x Scale für hochauflösende PDFs
 
-## Lizenz
+### Bild-Upload Features
+- **Drag & Drop ready**: Vorbereitet für zukünftige Erweiterungen
+- **Multiple Formate**: Unterstützt alle gängigen Bildformate
+- **Live-Preview**: Sofortige Anzeige hochgeladener Bilder
+- **Fallback-URLs**: Platzhalter wenn kein Bild geladen ist
 
-Dieses Projekt ist unter der MIT-Lizenz lizenziert.
+## 📋 Verwendung
+
+1. **Texte eingeben**: Alle Felder können direkt bearbeitet werden
+2. **Bilder hochladen**: File-Upload oder URL-Eingabe möglich
+3. **Live-Vorschau**: Änderungen werden sofort angezeigt
+4. **PDF exportieren**: Button "Als PDF speichern" für Download
+
+## 🔧 Entwicklung
+
+### Lokale Entwicklung
+```bash
+# Einfach die index.html in einem Browser öffnen
+# Oder mit einem lokalen Server:
+npx serve .
+```
+
+### Code-Qualität
+- ✅ Linter-freier Code
+- ✅ Accessibility-konform
+- ✅ Moderne JavaScript-Features
+- ✅ Responsive Design
+
+## 🐛 Behobene Probleme
+
+1. **PDF vs HTML Unterschiede**: Vollständig behoben durch optimierte html2canvas-Konfiguration
+2. **Inline CSS/JS**: Komplett ausgelagert für bessere Wartbarkeit
+3. **Bild-Upload Probleme**: Robuste Implementierung mit Fehlerbehandlung
+
+## 🎨 Features
+
+- Responsive Bootstrap-Design
+- Moderne Gradienten und Schatten
+- DIN A5 Format optimiert
+- Hochwertige PDF-Ausgabe
+- Barrierefreie Bedienung
+- Cross-Browser-Kompatibilität
