@@ -4,96 +4,171 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Event Einladung</title>
+  <title>Event Einladung Generator 2.0</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/main.css">
 </head>
 
-<body>
-  <div class="container mb-4" id="editor">
+<body class="theme-modern">
+  <!-- Theme Selector -->
+  <div class="container theme-selector" id="editor">
+    <div class="row mb-3">
+      <div class="col-12">
+        <h5 class="mb-3"><i class="fas fa-palette"></i> Design-Themes</h5>
+        <div class="row g-2">
+          <div class="col-md-4">
+            <div class="theme-option active" data-theme="modern" onclick="setTheme('modern')">
+              <i class="fas fa-rocket"></i> Modern
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="theme-option" data-theme="elegant" onclick="setTheme('elegant')">
+              <i class="fas fa-crown"></i> Elegant
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="theme-option" data-theme="warm" onclick="setTheme('warm')">
+              <i class="fas fa-heart"></i> Warm
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Eingabefelder -->
     <div class="row g-3">
       <div class="col-md-6">
+        <label for="input-title" class="form-label"><i class="fas fa-heading"></i> Eventtitel</label>
         <input id="input-title" value="Gesundheit und Nahrungsergänzung" class="form-control" placeholder="Eventtitel">
       </div>
       <div class="col-md-6">
+        <label for="input-subtitle" class="form-label"><i class="fas fa-text-height"></i> Untertitel</label>
         <input id="input-subtitle" value="Amway Produkte und der Plan" class="form-control" placeholder="Untertitel">
       </div>
       <div class="col-md-6">
+        <label for="input-presenter1" class="form-label"><i class="fas fa-user"></i> Referentin</label>
         <input id="input-presenter1" value="Referentin: Frau Dr. Anna Skrobot" class="form-control"
           placeholder="Referentin">
       </div>
       <div class="col-md-6">
+        <label for="input-presenter2" class="form-label"><i class="fas fa-user"></i> Referent</label>
         <input id="input-presenter2" value="Referent: Herr Bülent Kazan" class="form-control" placeholder="Referent">
       </div>
       <div class="col-md-4">
+        <label for="input-date" class="form-label"><i class="fas fa-calendar"></i> Datum</label>
         <input id="input-date" value="14. Mai 2023" class="form-control" placeholder="Datum">
       </div>
       <div class="col-md-4">
+        <label for="input-time" class="form-label"><i class="fas fa-clock"></i> Zeit</label>
         <input id="input-time" value="13 Uhr bis 15 Uhr" class="form-control" placeholder="Zeit">
       </div>
       <div class="col-md-4">
+        <label for="input-location" class="form-label"><i class="fas fa-map-marker-alt"></i> Ort</label>
         <input id="input-location" value="Beyoglu Restaurant, Oranienburgerstr. 88, 13437 Berlin" class="form-control"
           placeholder="Ort">
       </div>
+
+      <!-- Personen-Bilder -->
       <div class="col-md-6">
+        <label for="input-name1" class="form-label"><i class="fas fa-id-card"></i> Name 1</label>
         <input id="input-name1" value="Dr. Anna Skrobot" class="form-control" placeholder="Name 1">
-        <input id="input-img1" value="https://placehold.co/120x120?text=Bild+1" class="form-control mt-1"
+        <label for="input-img1" class="form-label mt-2"><i class="fas fa-link"></i> Bild 1 URL</label>
+        <input id="input-img1" value="https://placehold.co/120x120?text=Bild+1" class="form-control"
           placeholder="Bild 1 URL">
-        <label for="file-img1" class="form-label mt-1">Bild 1 hochladen:</label>
+        <label for="file-img1" class="form-label mt-2"><i class="fas fa-upload"></i> Bild 1 hochladen</label>
         <input id="file-img1" type="file" accept="image/*" class="form-control" onchange="loadFile(event, 'img1')">
       </div>
       <div class="col-md-6">
+        <label for="input-name2" class="form-label"><i class="fas fa-id-card"></i> Name 2</label>
         <input id="input-name2" value="Bülent Kazan" class="form-control" placeholder="Name 2">
-        <input id="input-img2" value="https://placehold.co/120x120?text=Bild+2" class="form-control mt-1"
+        <label for="input-img2" class="form-label mt-2"><i class="fas fa-link"></i> Bild 2 URL</label>
+        <input id="input-img2" value="https://placehold.co/120x120?text=Bild+2" class="form-control"
           placeholder="Bild 2 URL">
-        <label for="file-img2" class="form-label mt-1">Bild 2 hochladen:</label>
+        <label for="file-img2" class="form-label mt-2"><i class="fas fa-upload"></i> Bild 2 hochladen</label>
         <input id="file-img2" type="file" accept="image/*" class="form-control" onchange="loadFile(event, 'img2')">
       </div>
       <div class="col-md-6">
-        <label for="file-icon" class="form-label">Event Icon hochladen:</label>
+        <label for="file-icon" class="form-label"><i class="fas fa-image"></i> Event Icon hochladen</label>
         <input id="file-icon" type="file" accept="image/*" class="form-control" onchange="loadFile(event, 'icon-img')">
       </div>
-      <div id="pdf-buttons" class="text-end mt-3">
-        <button onclick="applyInput()" class="btn btn-primary">Übernehmen</button>
-        <button onclick="resetForm()" class="btn btn-outline-secondary ms-2">Zurücksetzen</button>
-        <button onclick="downloadPDF()" class="btn btn-success ms-2">Als PDF speichern</button>
+
+      <!-- Aktions-Buttons -->
+      <div id="pdf-buttons" class="col-12 text-end mt-4">
+        <button onclick="applyInput()" class="btn btn-primary me-2">
+          <i class="fas fa-sync"></i> Übernehmen
+        </button>
+        <button onclick="resetForm()" class="btn btn-outline-secondary me-2">
+          <i class="fas fa-undo"></i> Zurücksetzen
+        </button>
+        <button id="toggle-double-pdf" onclick="toggleDoublePDF()" class="btn btn-outline-secondary me-2">
+          <span id="double-pdf-icon">📄</span> <span>Doppel-PDF</span>
+        </button>
+        <button onclick="downloadPDF()" class="btn btn-success">
+          <i class="fas fa-download"></i> Als PDF speichern
+        </button>
       </div>
     </div>
   </div>
 
+  <!-- Event Einladung Vorschau -->
   <div class="a5-wrapper">
     <div class="angled-bg">
       <div class="container angled-content text-center">
-        <img id="icon-img" src="https://placehold.co/100x100?text=Icon" alt="Herz Icon" class="hero-icon mb-3">
+        <img id="icon-img" src="https://placehold.co/100x100?text=Icon" alt="Event Icon" class="hero-icon mb-3">
+
         <h1 class="text-gradient" id="title">Gesundheit und Nahrungsergänzung</h1>
         <p class="fw-semibold fs-5 text-primary" id="presenter1">Referentin: Frau Dr. Anna Skrobot</p>
+
         <h2 class="text-secondary" id="subtitle">Amway Produkte und der Plan</h2>
         <p class="fw-semibold fs-5 text-primary" id="presenter2">Referent: Herr Bülent Kazan</p>
 
-        <div class="mb-5">
-          <p class="fs-5"><strong>Sonntag, <span class="text-gradient" id="event-date">14. Mai 2023</span></strong></p>
-          <p class="fs-5">Beginn: <span class="text-gradient" id="event-time">13 Uhr bis 15 Uhr</span></p>
-          <p class="fs-5">Ort: <span class="text-gradient" id="event-location">Beyoglu Restaurant, Oranienburgerstr. 88,
-              13437 Berlin</span></p>
+        <div class="event-details">
+          <p class="fs-5 mb-2">
+            <i class="fas fa-calendar-alt text-gradient"></i>
+            <strong>Sonntag, <span class="text-gradient" id="event-date">14. Mai 2023</span></strong>
+          </p>
+          <p class="fs-5 mb-2">
+            <i class="fas fa-clock text-gradient"></i>
+            Beginn: <span class="text-gradient" id="event-time">13 Uhr bis 15 Uhr</span>
+          </p>
+          <p class="fs-5 mb-0">
+            <i class="fas fa-map-marker-alt text-gradient"></i>
+            Ort: <span class="text-gradient" id="event-location">Beyoglu Restaurant, Oranienburgerstr. 88, 13437
+              Berlin</span>
+          </p>
         </div>
 
         <div class="row justify-content-center text-center g-3">
           <div class="col-6">
-            <img id="img1" src="https://placehold.co/120x120?text=Bild+1" alt="Frau Dr. Skrobot"
-              class="speaker-img mb-2">
-            <h6 id="name1">Dr. Anna Skrobot</h6>
+            <div class="speaker-card">
+              <img id="img1" src="https://placehold.co/120x120?text=Bild+1" alt="Referentin" class="speaker-img mb-2">
+              <h6 id="name1" class="fw-bold">Dr. Anna Skrobot</h6>
+            </div>
           </div>
           <div class="col-6">
-            <img id="img2" src="https://placehold.co/120x120?text=Bild+2" alt="Herr Kazan" class="speaker-img mb-2">
-            <h6 id="name2">Bülent Kazan</h6>
+            <div class="speaker-card">
+              <img id="img2" src="https://placehold.co/120x120?text=Bild+2" alt="Referent" class="speaker-img mb-2">
+              <h6 id="name2" class="fw-bold">Bülent Kazan</h6>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="angled-footer text-center">
-      <p class="mb-0">Design optimiert für DIN A5 mittig in DIN A4</p>
-      <small>&copy; 2025 Deine Veranstaltung</small>
+      <div class="angled-content">
+        <p class="mb-1 fw-semibold">
+          <i class="fas fa-sparkles"></i>
+          Design optimiert für DIN A5 mittig in DIN A4
+        </p>
+        <small class="opacity-75">
+          <i class="fas fa-copyright"></i> 2025 Event Einladung Generator 2.0
+        </small>
+      </div>
     </div>
   </div>
 
