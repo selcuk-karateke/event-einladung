@@ -25,7 +25,7 @@
         <div class="input-panel">
           <!-- Theme Selector -->
           <div class="mb-4">
-            <h5 class="mb-3"><i class="fas fa-palette"></i> PDF Design-Themes</h5>
+            <h6 class="mb-3">Design-Themes</h6>
             <div class="row g-2">
               <div class="col-4">
                 <div class="theme-option active" data-theme="modern">
@@ -43,29 +43,43 @@
                 </div>
               </div>
             </div>
+
+            <!-- Custom Colors -->
+            <div class="mt-3">
+              <div class="row g-2">
+                <div class="col-6">
+                  <label for="custom-bg" class="form-label small">Background</label>
+                  <input id="custom-bg" type="color" value="#ffffff" class="form-control form-control-color">
+                </div>
+                <div class="col-6">
+                  <label for="custom-accent" class="form-label small">Akzent</label>
+                  <input id="custom-accent" type="color" value="#f093fb" class="form-control form-control-color">
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- Event Details -->
           <div class="mb-4">
-            <h6 class="text-muted mb-3"><i class="fas fa-info-circle"></i> Event Details</h6>
+            <h6 class="mb-3">Event Details</h6>
             <div class="mb-3">
-              <label for="input-title" class="form-label"><i class="fas fa-heading"></i> Eventtitel</label>
+              <label for="input-title" class="form-label">Eventtitel</label>
               <input id="input-title" value="Gesundheit und Nahrungsergänzung" class="form-control form-control-lg"
                 placeholder="Eventtitel">
             </div>
             <div class="mb-3">
-              <label for="input-subtitle" class="form-label"><i class="fas fa-text-height"></i> Untertitel</label>
+              <label for="input-subtitle" class="form-label">Untertitel</label>
               <input id="input-subtitle" value="Amway Produkte und der Plan" class="form-control form-control-lg"
                 placeholder="Untertitel">
             </div>
             <div class="row g-2">
               <div class="col-6">
-                <label for="input-presenter1" class="form-label"><i class="fas fa-user"></i> Referentin</label>
+                <label for="input-presenter1" class="form-label">Referentin</label>
                 <input id="input-presenter1" value="Referentin: Frau Dr. Anna Skrobot" class="form-control"
                   placeholder="Referentin">
               </div>
               <div class="col-6">
-                <label for="input-presenter2" class="form-label"><i class="fas fa-user"></i> Referent</label>
+                <label for="input-presenter2" class="form-label">Referent</label>
                 <input id="input-presenter2" value="Referent: Herr Bülent Kazan" class="form-control"
                   placeholder="Referent">
               </div>
@@ -74,17 +88,17 @@
 
           <!-- Zeit & Ort -->
           <div class="mb-4">
-            <h6 class="text-muted mb-3"><i class="fas fa-calendar-alt"></i> Zeit & Ort</h6>
+            <h6 class="mb-3">Zeit & Ort</h6>
             <div class="mb-2">
-              <label for="input-date" class="form-label"><i class="fas fa-calendar"></i> Datum</label>
+              <label for="input-date" class="form-label">Datum</label>
               <input id="input-date" value="14. Mai 2023" class="form-control" placeholder="Datum">
             </div>
             <div class="mb-2">
-              <label for="input-time" class="form-label"><i class="fas fa-clock"></i> Zeit</label>
+              <label for="input-time" class="form-label">Zeit</label>
               <input id="input-time" value="13 Uhr bis 15 Uhr" class="form-control" placeholder="Zeit">
             </div>
             <div class="mb-2">
-              <label for="input-location" class="form-label"><i class="fas fa-map-marker-alt"></i> Ort</label>
+              <label for="input-location" class="form-label">Ort</label>
               <textarea id="input-location" class="form-control" rows="2"
                 placeholder="Ort">Beyoglu Restaurant, Oranienburgerstr. 88, 13437 Berlin</textarea>
             </div>
@@ -92,12 +106,12 @@
 
           <!-- Personen -->
           <div class="mb-4">
-            <h6 class="text-muted mb-3"><i class="fas fa-users"></i> Personen</h6>
+            <h6 class="mb-3">Personen</h6>
             <div class="row g-3">
               <div class="col-6">
                 <div class="card">
                   <div class="card-body p-2">
-                    <h6 class="card-title"><i class="fas fa-user text-primary"></i> Person 1</h6>
+                    <h6 class="card-title">Person 1</h6>
                     <input id="input-name1" value="Dr. Anna Skrobot" class="form-control form-control-sm mb-2"
                       placeholder="Name">
                     <input id="input-img1" value="https://placehold.co/120x120?text=Bild+1"
@@ -111,7 +125,7 @@
               <div class="col-6">
                 <div class="card">
                   <div class="card-body p-2">
-                    <h6 class="card-title"><i class="fas fa-user text-primary"></i> Person 2</h6>
+                    <h6 class="card-title">Person 2</h6>
                     <input id="input-name2" value="Bülent Kazan" class="form-control form-control-sm mb-2"
                       placeholder="Name">
                     <input id="input-img2" value="https://placehold.co/120x120?text=Bild+2"
@@ -127,7 +141,7 @@
 
           <!-- Event Icon -->
           <div class="mb-4">
-            <h6 class="text-muted mb-3"><i class="fas fa-image"></i> Event Icon</h6>
+            <h6 class="mb-3">Event Icon</h6>
             <label for="file-icon" class="visually-hidden">Event Icon hochladen</label>
             <input id="file-icon" type="file" accept="image/*" class="form-control"
               onchange="loadFile(event, 'icon-img')">
