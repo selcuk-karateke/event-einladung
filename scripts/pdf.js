@@ -126,7 +126,6 @@ async function createDoublePDF(pdf, element, theme) {
     addGradientBackground(pdf, theme);
 
     // Zwei A5-Einladungen untereinander - angepasst für A4
-    // A4: 210x297mm, optimale Aufteilung
     const scale = 0.68; // Kleinere Skalierung damit beide passen
     const width = 148 * scale;   // ~100.6mm
     const height = 210 * scale;  // ~142.8mm
@@ -149,10 +148,181 @@ async function createDoublePDF(pdf, element, theme) {
 }
 
 function optimizeForPDF(clonedDoc, theme) {
+    // Spezielle PDF-Klasse hinzufügen die alle mobile Styles überschreibt
+    const body = clonedDoc.body;
+    body.classList.add('pdf-generation');
+
     const clonedElement = clonedDoc.querySelector('.a5-wrapper');
     if (clonedElement) {
-        clonedElement.style.transform = 'none';
-        clonedElement.style.boxShadow = '0 0 20px rgba(0,0,0,0.1)';
+        // Zusätzliche PDF-Klasse für maximale Kontrolle
+        clonedElement.classList.add('pdf-forced-desktop');
+
+        // Mobile Styles komplett überschreiben für PDF
+        clonedElement.style.cssText = `
+            transform: none !important;
+            width: 148mm !important;
+            height: 210mm !important;
+            max-width: 148mm !important;
+            min-height: 210mm !important;
+            margin: 0 !important;
+            overflow: hidden !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1) !important;
+            padding: 0 !important;
+            border-radius: 20px !important;
+            background: var(--theme-card-bg) !important;
+            position: relative !important;
+        `;
+
+        // Angled Background für PDF optimieren
+        const angledBg = clonedElement.querySelector('.angled-bg');
+        if (angledBg) {
+            let skewValue = '-2deg';
+            if (clonedElement.classList.contains('theme-modern')) {
+                skewValue = '-4deg';
+            } else if (clonedElement.classList.contains('theme-elegant')) {
+                skewValue = '-2deg';
+            } else if (clonedElement.classList.contains('theme-warm')) {
+                skewValue = '-3deg';
+            }
+
+            angledBg.style.cssText = `
+                padding: 3rem 2rem !important;
+                transform: skewY(${skewValue}) !important;
+                background: var(--theme-card-bg) !important;
+                border-radius: 20px !important;
+                position: relative !important;
+                z-index: 1 !important;
+            `;
+        }
+
+        // Angled Content für PDF optimieren
+        const angledContent = clonedElement.querySelectorAll('.angled-content');
+        angledContent.forEach(content => {
+            let skewValue = '2deg';
+            if (clonedElement.classList.contains('theme-modern')) {
+                skewValue = '4deg';
+            } else if (clonedElement.classList.contains('theme-elegant')) {
+                skewValue = '2deg';
+            } else if (clonedElement.classList.contains('theme-warm')) {
+                skewValue = '3deg';
+            }
+
+            content.style.cssText = `
+                transform: skewY(${skewValue}) !important;
+                position: relative !important;
+                z-index: 2 !important;
+            `;
+        });
+
+        // Footer für PDF optimieren
+        const footer = clonedElement.querySelector('.angled-footer');
+        if (footer) {
+            let skewValue = '-2deg';
+            let marginTop = '-2rem';
+
+            if (clonedElement.classList.contains('theme-modern')) {
+                skewValue = '-4deg';
+                marginTop = '-2rem';
+            } else if (clonedElement.classList.contains('theme-elegant')) {
+                skewValue = '-2deg';
+                marginTop = '-1rem';
+            } else if (clonedElement.classList.contains('theme-warm')) {
+                skewValue = '-3deg';
+                marginTop = '-2rem';
+            }
+
+            footer.style.cssText = `
+                padding: 1.5rem 2rem !important;
+                margin-top: ${marginTop} !important;
+                transform: skewY(${skewValue}) !important;
+                background: linear-gradient(135deg, var(--theme-primary), var(--theme-secondary)) !important;
+                border-radius: 20px !important;
+                color: white !important;
+                position: relative !important;
+                min-height: 60px !important;
+            `;
+        }
+
+        // Bilder auf Desktop-Größe zurücksetzen
+        const heroIcon = clonedElement.querySelector('.hero-icon');
+        if (heroIcon) {
+            heroIcon.style.cssText = `
+                width: 80px !important;
+                height: 80px !important;
+                border-radius: 50% !important;
+                object-fit: cover !important;
+                border: 3px solid var(--theme-accent) !important;
+            `;
+        }
+
+        const speakerImgs = clonedElement.querySelectorAll('.speaker-img');
+        speakerImgs.forEach(img => {
+            img.style.cssText = `
+                width: 100px !important;
+                height: 100px !important;
+                border-radius: 50% !important;
+                object-fit: cover !important;
+                border: 3px solid var(--theme-accent) !important;
+            `;
+        });
+
+        // Typografie auf Desktop-Größe zurücksetzen
+        const h1Elements = clonedElement.querySelectorAll('h1');
+        h1Elements.forEach(h1 => {
+            let fontSize = '1.8rem';
+            if (clonedElement.classList.contains('theme-elegant') || clonedElement.classList.contains('theme-warm')) {
+                fontSize = '1.9rem';
+            }
+
+            h1.style.cssText = `
+                font-size: ${fontSize} !important;
+                margin-bottom: 0.5rem !important;
+                line-height: 1.2 !important;
+                font-weight: 700 !important;
+            `;
+        });
+
+        const h2Elements = clonedElement.querySelectorAll('h2');
+        h2Elements.forEach(h2 => {
+            let fontSize = '1.3rem';
+            if (clonedElement.classList.contains('theme-elegant')) {
+                fontSize = '1.4rem';
+            }
+
+            h2.style.cssText = `
+                font-size: ${fontSize} !important;
+                margin-bottom: 1rem !important;
+                line-height: 1.2 !important;
+                font-weight: 600 !important;
+            `;
+        });
+
+        // Event Details für PDF optimieren
+        const eventDetails = clonedElement.querySelector('.event-details');
+        if (eventDetails) {
+            eventDetails.style.cssText = `
+                padding: 1.5rem !important;
+                margin: 1.5rem 0 !important;
+                background: rgba(255, 255, 255, 0.8) !important;
+                backdrop-filter: blur(10px) !important;
+                border-radius: 15px !important;
+                border: 1px solid rgba(255, 255, 255, 0.3) !important;
+            `;
+        }
+
+        // Speaker Cards für PDF optimieren
+        const speakerCards = clonedElement.querySelectorAll('.speaker-card');
+        speakerCards.forEach(card => {
+            card.style.cssText = `
+                padding: 1rem !important;
+                background: rgba(255, 255, 255, 0.9) !important;
+                border-radius: 15px !important;
+                border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            `;
+        });
     }
 
     // Text-Gradienten für PDF optimieren
